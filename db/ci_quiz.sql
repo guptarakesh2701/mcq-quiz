@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 14, 2017 at 02:47 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jan 22, 2021 at 04:11 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,45 +25,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subscribers`
+-- Table structure for table `adminuser`
 --
 
-CREATE TABLE `subscribers` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `adminuser`;
+CREATE TABLE IF NOT EXISTS `adminuser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(11) NOT NULL,
+  `password` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `adminuser`
+--
+
+INSERT INTO `adminuser` (`id`, `username`, `password`) VALUES
+(1, 'admin', 999999);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guestlists`
+--
+
+DROP TABLE IF EXISTS `guestlists`;
+CREATE TABLE IF NOT EXISTS `guestlists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `phone` varchar(255) NOT NULL,
+  `score` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `subscribers`
+-- Dumping data for table `guestlists`
 --
 
-INSERT INTO `subscribers` (`id`, `name`, `email`, `phone`) VALUES
-(9, 'dasdf', 'a@g.com', '103214561431312'),
-(8, 'Md. Masudul Kabir', 'masud.ncse@gmail.com', '01676717945'),
-(7, 'Mahabubur Rahman', 'saurav@imeshbd.com', '12345679891'),
-(10, 'asdf', 'd@g.com', '012354564345');
+INSERT INTO `guestlists` (`id`, `name`, `email`, `phone`, `score`) VALUES
+(1, 'Rakesh', 'rakesh@gmail.com', '9999999999', 5);
+COMMIT;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `subscribers`
---
-ALTER TABLE `subscribers`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `subscribers`
---
-ALTER TABLE `subscribers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
